@@ -21,7 +21,8 @@ public class BoardManager : MonoBehaviour
     public Tile[] GroundTiles;
     public Tile[] WallTiles;
     public PlayerController Player;
-    public GameObject FoodPrefab;
+    // public GameObject FoodPrefab;
+    public GameObject[] FoodPrefabs;
 
     // Init is called before the first frame update
     public void Init()
@@ -85,7 +86,8 @@ public class BoardManager : MonoBehaviour
 
             m_EmptyCellsList.RemoveAt(randomIndex);
             CellData data = m_BoardData[coord.x, coord.y];
-            GameObject newFood = Instantiate(FoodPrefab);
+            GameObject foodPrefab = FoodPrefabs[Random.Range(0, FoodPrefabs.Length)];
+            GameObject newFood = Instantiate(foodPrefab);
             newFood.transform.position = CellToWorld(coord);
             data.ContainedObject = newFood;
         }
