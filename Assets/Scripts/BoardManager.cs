@@ -7,7 +7,7 @@ public class BoardManager : MonoBehaviour
     public class CellData
     {
         public bool Passable;
-        public GameObject ContainedObject;
+        public CellObject ContainedObject;
     }
 
     private CellData[,] m_BoardData;
@@ -22,7 +22,7 @@ public class BoardManager : MonoBehaviour
     public Tile[] WallTiles;
     public PlayerController Player;
     public int FoodNum;
-    public GameObject[] FoodPrefabs;
+    public FoodObject[] FoodPrefabs;
 
     // Init is called before the first frame update
     public void Init()
@@ -85,8 +85,8 @@ public class BoardManager : MonoBehaviour
 
             m_EmptyCellsList.RemoveAt(randomIndex);
             CellData data = m_BoardData[coord.x, coord.y];
-            GameObject foodPrefab = FoodPrefabs[Random.Range(0, FoodPrefabs.Length)];
-            GameObject newFood = Instantiate(foodPrefab);
+            FoodObject foodPrefab = FoodPrefabs[Random.Range(0, FoodPrefabs.Length)];
+            FoodObject newFood = Instantiate(foodPrefab);
             newFood.transform.position = CellToWorld(coord);
             data.ContainedObject = newFood;
         }

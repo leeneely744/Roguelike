@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 651807456335299777}
   - component: {fileID: 3721509067758502342}
   - component: {fileID: 5188329190220842789}
+  - component: {fileID: 5533605883039532905}
   m_Layer: 0
   m_Name: Drink
   m_TagString: Untagged
@@ -157,3 +158,15 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &5533605883039532905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095789795355335976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e8e58a073e460bafcf27f29c80fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
