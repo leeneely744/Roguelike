@@ -21,7 +21,7 @@ public class BoardManager : MonoBehaviour
     public Tile[] GroundTiles;
     public Tile[] WallTiles;
     public PlayerController Player;
-    // public GameObject FoodPrefab;
+    public int FoodNum;
     public GameObject[] FoodPrefabs;
 
     // Init is called before the first frame update
@@ -78,8 +78,7 @@ public class BoardManager : MonoBehaviour
 
     void GenerateFood()
     {
-        int foodCount = 5;
-        for (int i = 0; i < foodCount; ++i)
+        for (int i = 0; i < FoodNum; ++i)
         {
             int randomIndex = Random.Range(0, m_EmptyCellsList.Count);
             Vector2Int coord = m_EmptyCellsList[randomIndex];
