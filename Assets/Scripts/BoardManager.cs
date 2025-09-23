@@ -23,6 +23,7 @@ public class BoardManager : MonoBehaviour
     public PlayerController Player;
     public int FoodNum;
     public FoodObject[] FoodPrefabs;
+    public WallObject WallPrefab;
 
     // Init is called before the first frame update
     public void Init()
@@ -59,6 +60,7 @@ public class BoardManager : MonoBehaviour
 
         m_EmptyCellsList.Remove(new Vector2Int(1, 1));
         GenerateFood();
+        GenerateWall(); // It must be called after GenerateFood
     }
 
     public Vector3 CellToWorld(Vector2Int cellIndex)
@@ -90,5 +92,30 @@ public class BoardManager : MonoBehaviour
             newFood.transform.position = CellToWorld(coord);
             data.ContainedObject = newFood;
         }
+    }
+
+    void GenerateWall()
+    {
+        int wallCount = Random.Range(6, 10);
+        for (int i = 0; i < wallCount; ++i)
+        {
+            int randomIndex = Random.Range(0, m_EmptyCellsList.Count);
+            Vector2Int coord = m_EmptyCellsList[randomIndex];
+
+            m_EmptyCellsList.RemoveAt(randomIndex);
+            CellData data = m_BoardData[coord.x, coord.y];
+            WallObject newWall = Instantiate(WallPrefab);
+
+            newWall.Init(coord);
+
+            newWall.transform.position = CellToWorld(coord);
+
+            data.ContainedObject = newWall;
+        }
+    }
+
+    public void SetCellTile(Vector2Int cellIndex, Tile tile)
+    {
+        m_Tilemap.SetTile(new Vector3Int(cellIndex.x, cellIndex.y, 0), tile);
     }
 }
