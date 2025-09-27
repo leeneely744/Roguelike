@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 
 public class WallObject : CellObject
 {
-    public Tile ObstacleTile;
+    public Tile[] ObstacleTiles;
     public int MaxHealth = 3;
 
     private int m_HealthPoint;
@@ -17,7 +17,8 @@ public class WallObject : CellObject
 
         m_OriginalTile = GameManager.Instance.BoardManager.GetCellTile(cell);
 
-        GameManager.Instance.BoardManager.SetCellTile(cell, ObstacleTile);
+        Tile obstacleTile = ObstacleTiles[Random.Range(0, ObstacleTiles.Length)];
+        GameManager.Instance.BoardManager.SetCellTile(cell, obstacleTile);
     }
 
     public override bool PlayerWantsToEnter()
