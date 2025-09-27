@@ -5,6 +5,7 @@ public class WallObject : CellObject
 {
     public Tile[] ObstacleTiles;
     public int MaxHealth = 3;
+    public Tile BrokenTile;
 
     private int m_HealthPoint;
     private Tile m_OriginalTile;
@@ -25,6 +26,12 @@ public class WallObject : CellObject
     {
         m_HealthPoint -= 1;
 
+        if (m_HealthPoint == 1)
+        {
+            GameManager.Instance.BoardManager.SetCellTile(m_Cell, BrokenTile);
+            return false;
+        }
+        
         if (m_HealthPoint > 0)
         {
             return false;

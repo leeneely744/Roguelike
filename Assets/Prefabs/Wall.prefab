@@ -49,3 +49,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e76abe33af6644e5d8ff9c70da986156, type: 2}
   - {fileID: 11400000, guid: 679dbd1b2f37342879788b49ca5d646c, type: 2}
   MaxHealth: 3
+  BrokenTile: {fileID: 11400000, guid: 10bd31fd9dd9d48a3a15995ebbbe48ee, type: 2}
