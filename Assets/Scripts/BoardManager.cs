@@ -24,6 +24,7 @@ public class BoardManager : MonoBehaviour
     public int FoodNum;
     public FoodObject[] FoodPrefabs;
     public WallObject WallPrefab;
+    public ExitCellObject ExitCellPrefab;
 
     // Init is called before the first frame update
     public void Init()
@@ -59,6 +60,11 @@ public class BoardManager : MonoBehaviour
         }
 
         m_EmptyCellsList.Remove(new Vector2Int(1, 1));
+
+        Vector2Int endCoord = new Vector2Int(Width - 2, Height - 2);
+        AddObject(Instantiate(ExitCellPrefab), endCoord);
+        m_EmptyCellsList.Remove(endCoord);
+
         GenerateFood();
         GenerateWall(); // It must be called after GenerateFood
     }
