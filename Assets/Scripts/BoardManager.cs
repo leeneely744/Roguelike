@@ -128,4 +128,17 @@ public class BoardManager : MonoBehaviour
         data.ContainedObject = obj;
         obj.Init(coord);
     }
+
+    public void CleanUp()
+    {
+        for (int y = 0; y < Height; ++y)
+        {
+            for (int x = 0; x < Width; ++x)
+            {
+                m_Tilemap.SetTile(new Vector3Int(x, y, 0), null);
+            }
+        }
+
+        m_EmptyCellsList.Clear();
+    }
 }

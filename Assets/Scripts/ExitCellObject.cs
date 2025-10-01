@@ -14,6 +14,6 @@ public class ExitCellObject : CellObject
 
     public override void PlayerEntered()
     {
-        Debug.Log("Game Clear!");
+        GameManager.Instance.NewLevel();
     }
 }

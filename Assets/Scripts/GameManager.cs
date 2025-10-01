@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         TurnManager.OnTick += OnTurnHappen;
 
         BoardManager.Init();
+        InitPlayer();
+    }
+
+    private void InitPlayer()
+    {
         PlayerController.Spawn(BoardManager, new Vector2Int(1, 1));
     }
 
@@ -54,5 +59,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void NewLevel()
+    {
+        BoardManager.CleanUp();
+        BoardManager.Init();
+        InitPlayer();
     }
 }
