@@ -3,16 +3,14 @@ using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
-    private int m_FoodAmount = 100;
-
     public static GameManager Instance { get; private set; }
-
     public BoardManager BoardManager;
     public PlayerController PlayerController;
-
     public TurnManager TurnManager { get; private set; }
-
     public UIDocument UIDoc;
+
+    private int m_FoodAmount = 100;
+    private int m_CurrentLevel = 1;
     private Label m_FoodLabel;
 
     private void Awake()
@@ -29,14 +27,25 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        TurnManager = new TurnManager();
+        TurnManager.OnTick += OnTurnHappen;
+
+        NewLevel();
+
         m_FoodLabel = UIDoc.rootVisualElement.Q<Label>("FoodLabel");
         m_FoodLabel.text = "Food: " + m_FoodAmount;
 
         TurnManager = new TurnManager();
         TurnManager.OnTick += OnTurnHappen;
+    }
 
+    public void NewLevel()
+    {
+        BoardManager.CleanUp();
         BoardManager.Init();
         InitPlayer();
+
+        m_CurrentLevel += 1;
     }
 
     private void InitPlayer()
@@ -59,12 +68,5 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void NewLevel()
-    {
-        BoardManager.CleanUp();
-        BoardManager.Init();
-        InitPlayer();
     }
 }

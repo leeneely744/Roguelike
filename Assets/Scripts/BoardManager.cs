@@ -131,11 +131,23 @@ public class BoardManager : MonoBehaviour
 
     public void CleanUp()
     {
+        if (m_BoardData == null)
+        {
+            return;
+        }
+
         for (int y = 0; y < Height; ++y)
         {
             for (int x = 0; x < Width; ++x)
             {
-                m_Tilemap.SetTile(new Vector3Int(x, y, 0), null);
+                var cellData = m_BoardData[x, y];
+
+                if (cellData.ContainedObject != null)
+                {
+                    Destroy(cellData.ContainedObject.gameObject);
+                }
+
+                SetCellTile(new Vector2Int(x, y), null);
             }
         }
 
